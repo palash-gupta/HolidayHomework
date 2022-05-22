@@ -120,7 +120,7 @@ def update(file, searchKey, newValues):
             newRec = rec.copy()
             allCorrect = True
             for field in searchKey.keys():
-                newRec[field] = newValues[field]
+                newRec[field] = newValues[field] if newValues[field] != '' else rec[field]
                 if searchKey[field] == '':
                     continue
 
