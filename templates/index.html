@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>File Manager</title>
+        <link rel="stylesheet" href="/static/css/index.css">
+    </head>
+
+    <body>
+        <h1>
+        <ul>
+        {% if fileOpened %}
+        <li><a onclick="alert('File Already Open!')" href="">Initialise</a></li>
+        
+        {% for option in options[1:] %}
+        <li><a href="/{{option}}/">{{option[0].upper() + option[1:]}}</a></li>
+        {% endfor %}
+        {% else %}
+        <li><a href="/initialise/">Initialise</a></li>
+        
+        {% for option in options[1:] %}
+        <li><a onclick="alert('No File Open!')" href="">{{option[0].upper() + option[1:]}}</a></li>
+        {% endfor %}        
+        {% endif %}
+        </ul>
+        </h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

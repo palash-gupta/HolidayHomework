@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<form method="POST" action="/search/submit/">
+    {% for i in range(fields|length) %}
+    <label for="{{fields[i]}}"> {{fieldsSentenceCase[i]}}: </label> &nbsp;
+    <input type="text" name="{{fields[i]}}"><br>
+    {% endfor %}
+
+    <input type="submit" value="Search">
+</form>
+
+<br>
+
+{% if records|length == 0 %}
+<h1> No Records Found</h1>
+{% else %}
+{% for record in records %}
+<h2>
+    {% for i in range(fields|length) %}
+    {{ fieldsSentenceCase[i] }} : {{record[fields[i]]}}
+    &nbsp;&nbsp;
+    {% endfor %}
+</h2>
+{% endfor %}
+{% endif %}
+{%endblock%}
